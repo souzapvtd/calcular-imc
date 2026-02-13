@@ -1,39 +1,26 @@
 const calcular = document.getElementById('calcular');
 
-function imc(){
-const nome = document.getElementById ('nome').value;
-const altura = document.getElementById ('altura').value;
-const peso = document.getElementById ('peso').value;
-const resultado = document.getElementById('resultado');
+function calcularNota() {
+    const nome = document.getElementById('nome').value;
+    const nota = Number(document.getElementById('nota').value);
+    const resultado = document.getElementById('resultado');
 
+    if (nome !== '' && nota !== '') {
 
-if(nome !==''&& altura !==''&& peso !==''){
-const valorIMC=(peso/(altura*altura)).toFixed (1);
-let classificacao = '';
+        let classificacao = '';
 
-if(valorIMC <18.5){
-classificacao = 'abaixo do peso';
-
-   }else if(valorIMC <25){
-        classificacao = 'com peso normal';
-
-   }else if(valorIMC <30){
-        classificacao = 'levemente acima do peso'
-
-   }else if(valorIMC <35){
-         classificacao = 'obesidade grau 1'
-
-   }else if(valorIMC <40){
-        classificacao = 'obesidade grau 2'
-
-   }else {
-         classificacao = 'atenção'
+        if (nota >= 60) {
+            classificacao = 'Aprovado';
+        } else if (nota >= 40) {
+            classificacao = 'Recuperação';
+        } else { (nota >= 30);
+            classificacao = 'Reprovado';
+        }
+resultado.textContent = `${nome} sua nota é ${nota} e você está ${classificacao}`;
+     
+    } else {
+       resultado.textContent = 'preencha todos os campos'
+    }
 }
-resultado.textContent = `${nome} seu imc é ${valorIMC} e você está ${classificacao}`;
 
-}
-else{
-    resultado.textContent = 'preencha todos os campos'
-}
-}
-calcular.addEventListener ('click', imc);
+calcular.addEventListener('click', calcularNota);
